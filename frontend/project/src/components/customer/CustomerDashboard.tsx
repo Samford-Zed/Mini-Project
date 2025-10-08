@@ -1,4 +1,4 @@
-// src/components/customer/CustomerDashboard.tsx
+
 import React, { useEffect, useMemo, useState } from "react";
 import {
   Plus,
@@ -25,17 +25,16 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
 }) => {
   const { user } = useAuth();
 
-  // data
+
   const [loans, setLoans] = useState<LoanResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
 
-  // ui state
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [showScheduleModal, setShowScheduleModal] = useState(false);
   const [selectedLoanId, setSelectedLoanId] = useState<number | null>(null);
 
-  // fetch my loans on mount (and when we need refresh)
+ 
   const loadLoans = async () => {
     try {
       setLoading(true);
@@ -84,7 +83,6 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
     setShowScheduleModal(true);
   };
 
-  // ---- Render sections ----
   const renderHeader = () => (
     <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'>
       <div>
@@ -304,7 +302,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
     </>
   );
 
-  // choose content by currentView (from Layout)
+
   const viewContent = () => {
     switch (currentView) {
       case "apply-loan":
@@ -312,7 +310,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
       case "my-loans":
         return renderMyLoans();
       case "payments":
-        return <RepaymentSchedulePage />; // ✅ page view
+        return <RepaymentSchedulePage />;
       case "profile":
         return renderProfile();
       case "dashboard":
@@ -330,8 +328,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
         <LoanApplicationForm
           onClose={() => setShowApplicationForm(false)}
           onSubmit={async () => {
-            // If your LoanApplicationForm posts to /api/loans/apply,
-            // just refresh the list after it closes:
+           
             setShowApplicationForm(false);
             await loadLoans();
           }}
