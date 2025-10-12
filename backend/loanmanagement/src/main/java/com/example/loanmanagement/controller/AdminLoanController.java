@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-//@SecurityRequirement(name = "bearerAuth")
+
 @RequiredArgsConstructor
 public class AdminLoanController {
 
@@ -25,13 +25,11 @@ public class AdminLoanController {
         return ResponseEntity.ok(adminStatsService.getStats());
     }
 
-    // Fetch all loans (using LoanResponse DTO)
     @GetMapping("/loans")
     public ResponseEntity<List<LoanResponse>> getAllLoans() {
         return ResponseEntity.ok(adminLoanService.getAllLoans());
     }
 
-    // Approve loan with optional remark
     @PutMapping("/loans/{loanId}/approve")
     public ResponseEntity<LoanResponse> approveLoan(
             @PathVariable Long loanId,
@@ -40,7 +38,6 @@ public class AdminLoanController {
         return ResponseEntity.ok(adminLoanService.approveLoan(loanId, remark));
     }
 
-    // Reject loan with optional remark
     @PutMapping("/loans/{loanId}/reject")
     public ResponseEntity<LoanResponse> rejectLoan(
             @PathVariable Long loanId,
@@ -49,7 +46,6 @@ public class AdminLoanController {
         return ResponseEntity.ok(adminLoanService.rejectLoan(loanId, remark));
     }
 
-    // Mark repayment as paid
     @PutMapping("/repayments/{repaymentId}/pay")
     public ResponseEntity<Repayment> markRepaymentPaid(@PathVariable Long repaymentId) {
         return ResponseEntity.ok(adminLoanService.markRepaymentPaid(repaymentId));
