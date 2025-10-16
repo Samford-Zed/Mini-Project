@@ -1,4 +1,4 @@
-// src/main/java/com/example/loanmanagement/dto/LoanResponse.java
+
 package com.example.loanmanagement.dto;
 
 import lombok.Data;
@@ -21,3 +21,4 @@ public class LoanResponse {
     private String customerName;
     private String customerEmail;
 }
+
