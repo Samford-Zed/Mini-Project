@@ -1,4 +1,4 @@
-                                                               LoanMS — Loan Management System
+                                                      LoanMS — Loan Management System
 
 A sleek, role-based Loan Management System for banks and MFIs. Customers can apply for loans and track EMI schedules. Admins can review applications, approve/reject, mark repayments as paid, and view customers — all with a modern React UI and a secure Spring Boot API.
 
@@ -20,7 +20,7 @@ Clean Domain: JPA entities for User, Loan, Repayment + repositories & services
 
 DX-Friendly: Simple local setup, clear endpoints, and friendly error messages
 
-                                                                  🧱 Tech Stack
+                                                            🧱 Tech Stack
 
 Frontend
 
