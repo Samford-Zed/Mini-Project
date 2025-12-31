@@ -1,73 +1,82 @@
-                                                      LoanMS — Loan Management System
+<h1>LoanMS — Loan Management System</h1>
 
-A sleek, role-based Loan Management System for banks and MFIs. Customers can apply for loans and track EMI schedules. Admins can review applications, approve/reject, mark repayments as paid, and view customers — all with a modern React UI and a secure Spring Boot API.
+<p>
+  A <strong>sleek, role-based Loan Management System</strong> for banks and MFIs.
+  Customers can apply for loans and track EMI schedules, while Admins review applications,
+  approve or reject them, mark repayments as paid, and manage customers —
+  all powered by a modern <strong>React UI</strong> and a secure <strong>Spring Boot API</strong>.
+</p>
 
-                                                                     ✨ Highlights
+<hr/>
 
-Modern UI: React + Vite + Tailwind for a fast, clean, responsive interface
+<h2>✨ Highlights</h2>
+<ul>
+  <li><strong>Modern UI</strong> — React + Vite + Tailwind for a fast, clean, responsive interface</li>
+  <li><strong>Secure API</strong> — Spring Boot 3, Spring Security (JWT), role-based access (ADMIN / CUSTOMER)</li>
+  <li><strong>EMI Engine</strong> — Accurate EMI calculation with auto-generated schedules & due dates</li>
+  <li><strong>Two Portals</strong>
+    <ul>
+      <li><strong>Customer</strong>: Apply for loans, view “My Loans”, repayment schedule, profile</li>
+      <li><strong>Admin</strong>: Review applications, approve/reject, mark repayments paid, view customers</li>
+    </ul>
+  </li>
+  <li><strong>Clean Domain</strong> — JPA entities for User, Loan, Repayment with clear services & repositories</li>
+  <li><strong>DX-Friendly</strong> — Simple setup, clean endpoints, and helpful error messages</li>
+</ul>
 
-Secure API: Spring Boot 3, Spring Security (JWT), Role-based access (ADMIN / CUSTOMER)
+<hr/>
 
-EMI Engine: Accurate EMI calculation, auto-generated due dates & schedules
+<h2>🧱 Tech Stack</h2>
 
-Two Portals:
+<h3>Frontend</h3>
+<ul>
+  <li>React + TypeScript + Vite</li>
+  <li>TailwindCSS + Lucide Icons</li>
+  <li>Axios for API calls</li>
+  <li>JWT stored client-side (AuthContext)</li>
+</ul>
 
-Customer: Apply, view “My Loans”, repayment schedule, profile
+<h3>Backend</h3>
+<ul>
+  <li>Spring Boot 3 (Web, Security, Validation)</li>
+  <li>Spring Data JPA</li>
+  <li>PostgreSQL (recommended) or H2 for quick development</li>
+  <li>JWT authentication with filter chain</li>
+</ul>
 
-Admin: Applications list, approve/reject, mark repayment paid, customers list
+<hr/>
 
-Clean Domain: JPA entities for User, Loan, Repayment + repositories & services
+<h2>🗂️ Project Structure</h2>
 
-DX-Friendly: Simple local setup, clear endpoints, and friendly error messages
-
-                                                            🧱 Tech Stack
-
-Frontend
-
-React + TypeScript + Vite
-
-TailwindCSS + Lucide Icons
-
-Axios for API calls
-
-JWT stored client-side (AuthContext)
-
-Backend
-
-Spring Boot 3 (Web, Security, Validation)
-
-Spring Data JPA
-
-Database: PostgreSQL (recommended) or H2 for quick dev
-
-JWT auth with filter chain
-
-                                                                     🗂️ Project Structure
+<pre>
 project/
 ├─ frontend/
 │  └─ src/
 │     ├─ components/
-│     │  ├─ admin/             # Admin pages & modals
-│     │  └─ customer/          # Customer dashboard & panels
-│     ├─ contexts/             # AuthContext (login/register/jwt)
-│     ├─ lib/                  # API clients (admin.ts, loans.ts, repayments.ts, api.ts)
-│     └─ utils/                # format & calculation helpers
+│     │  ├─ admin/        # Admin pages & modals
+│     │  └─ customer/     # Customer dashboard & panels
+│     ├─ contexts/        # AuthContext (login/register/JWT)
+│     ├─ lib/             # API clients (admin, loans, repayments)
+│     └─ utils/           # Format & calculation helpers
 └─ backend/
    └─ src/main/java/com/example/loanmanagement/
-      ├─ model/                # User, Loan, Repayment
-      ├─ repository/           # LoanRepository, RepaymentRepository, UserRepository
-      ├─ service/              # LoanService, AdminLoanService, etc.
-      ├─ controller/           # LoanController, Admin* controllers
-      ├─ security/             # JwtAuthFilter, config
-      └─ util/                 # EmiCalculator, DateUtil
+      ├─ model/           # User, Loan, Repayment
+      ├─ repository/      # JPA repositories
+      ├─ service/         # Business logic
+      ├─ controller/      # REST controllers
+      ├─ security/        # JWT & Spring Security config
+      └─ util/            # EMI calculator & date utilities
+</pre>
 
-                                                                  🚀 Getting Started
-1) Backend (Spring Boot)
+<hr/>
 
-Prereqs: JDK 17+, Maven, PostgreSQL (or use H2 to try it fast)
+<h2>🚀 Getting Started</h2>
 
-application.properties example (PostgreSQL):
+<h3>1) Backend (Spring Boot)</h3>
+<p><strong>Prerequisites:</strong> JDK 17+, Maven, PostgreSQL (or H2)</p>
 
+<p><strong>application.properties (PostgreSQL example)</strong></p>
+<pre>
 server.port=8080
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/loanms
@@ -77,188 +86,150 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
-# CORS (match your Vite dev port)
+# CORS
 app.cors.allowed-origin=http://localhost:5173
 
 # JWT
 app.jwt.secret=change-me-super-secret
 app.jwt.expiration=86400000
+</pre>
 
-
-💡 Want super-quick try? Switch to H2:
-
+<p><strong>Quick try with H2</strong></p>
+<pre>
 spring.datasource.url=jdbc:h2:mem:loanms;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
 spring.datasource.driverClassName=org.h2.Driver
 spring.jpa.hibernate.ddl-auto=create-drop
+</pre>
 
-
-Run
-
-# from backend root
+<p><strong>Run</strong></p>
+<pre>
 mvn spring-boot:run
+</pre>
+<p>API runs at <code>http://localhost:8080</code></p>
 
+<hr/>
 
-API will be at http://localhost:8080.
+<h3>2) Frontend (React)</h3>
 
-2) Frontend (React)
-
-.env (frontend)
-
+<p><strong>.env</strong></p>
+<pre>
 VITE_API_BASE_URL=http://localhost:8080
+</pre>
 
-
-Run
-
-# from frontend root
+<p><strong>Run</strong></p>
+<pre>
 npm install
 npm run dev
-
-
-App at http://localhost:5173.
-
-                                                                  🔐 Roles & Auth
-
-CUSTOMER: /app — apply for loans, list “My Loans”, repayment schedule, profile
-
-ADMIN: /admin — see applications, approve/reject, mark repayment paid, list customers
-
-Auth flow:
-
-Login returns JWT; stored by the client (AuthContext).
-
-Each request sends Authorization: Bearer <token>.
-
-Spring Security rejects unauthorized/forbidden access with clear 401/403.
-
-📡 API Quick Reference
-Customer
-
-POST /api/auth/register — register {name,email,password}
-
-POST /api/auth/login — login {email,password} → JWT
-
-POST /api/loans/apply — apply for a new loan (customer)
-
-GET /api/loans/my — current user’s loans
-
-GET /api/loans/{loanId} — loan details
-
-GET /api/loans/{loanId}/repayments — schedule for a loan
-
-Admin
-
-GET /api/admin/loans — all applications (with user info)
-
-PUT /api/admin/loans/{id}/approve?remark=... — approve loan
-
-PUT /api/admin/loans/{id}/reject?remark=... — reject loan
-
-PUT /api/admin/repayments/{repaymentId}/pay — mark installment as PAID
-
-GET /api/admin/customers — list users with role CUSTOMER
-
-(optional if implemented) GET /api/admin/stats — dashboard stats
-
-The frontend already wires these into:
-
-Admin: Loan Applications, Customers, Reports, Settings
-
-Customer: Apply Loan, My Loans, Payments / Repayment Schedule, Profile
-
-                                                                  🧮 EMI & Schedule
-
-EMI is computed with EmiCalculator.calculateEMI(principal, annualRate, tenureMonths)
-
-Schedule is generated using DateUtil.generateDueDates(startDate, tenureMonths)
-
-Each installment: principal + interest, and the Admin can mark a row PAID
-
-Customer views live totals: paid count, total paid, remaining
-
-                                                                  🧭 Using the App
-
-Register & Login
-
-Register as a new user and sign in (Customer).
-
-Apply for Loan
-
-Fill amount, loan type/purpose, tenure — submit.
-
-Admin Reviews
-
-Admin signs in → Applications → Approve/Reject → Optionally add remark.
-
-Repayment
-
-After approval, schedule is generated.
-
-Admin can mark installments PAID; Customer sees status update in “Payments”.
-
-                                                                     🖼️ Screens (what you’ll see)
-
-Customer Dashboard: Active loans, totals, quick access to apply & view schedules
-
-Apply Loan: Minimal form with inline validation
-
-Payments (Schedule): EMI table with due date, principal, interest, status
-
-Admin Dashboard: KPI cards + Applications table with actions & details modal
-
-Customers: Real list fetched from backend (no more mock!)
-
-                                                               🧪 Troubleshooting
-
-CORS errors: Ensure app.cors.allowed-origin matches your Vite URL (usually http://localhost:5173).
-
-JWT 401/403: Confirm Authorization: Bearer <token> is being sent; check token expiry.
-
-Ports: Backend :8080, Frontend :5173. Update if you customized them.
-
-“Failed to load …”: Inspect browser Network tab; verify the endpoint exists and returns JSON.
-
-                                                                  🗺️ Roadmap
-
-Payment gateway integration
-
-Export schedules (CSV/PDF)
-
-Admin analytics: charts & cohorts
-
-Multi-tenancy and audit logs
-
-Email/SMS notifications
-
-                                                                        🤝 Contributing
-
-PRs are welcome!
-
-Keep PRs focused
-
-Add clear commit messages
-
-Include small screenshots/GIFs for UI changes
-
-                                                                           📄 License
-
-MIT — do as you wish, just keep the attribution.
-
-                                                                           💬 Credits
-
-Built with ♥️ using Spring Boot & React.
-Thanks to the open-source community for the incredible tooling.
-
-Quick Start TL;DR
+</pre>
+
+<p>App runs at <code>http://localhost:5173</code></p>
+
+<hr/>
+
+<h2>🔐 Roles & Authentication</h2>
+<ul>
+  <li><strong>CUSTOMER</strong> — /app: apply loans, view schedules, profile</li>
+  <li><strong>ADMIN</strong> — /admin: applications, approvals, repayments, customers</li>
+</ul>
+
+<p><strong>Auth Flow</strong></p>
+<ul>
+  <li>Login returns JWT (stored in AuthContext)</li>
+  <li>Requests send <code>Authorization: Bearer &lt;token&gt;</code></li>
+  <li>Unauthorized access returns clear 401 / 403 errors</li>
+</ul>
+
+<hr/>
+
+<h2>📡 API Quick Reference</h2>
+
+<h3>Customer</h3>
+<ul>
+  <li>POST /api/auth/register</li>
+  <li>POST /api/auth/login</li>
+  <li>POST /api/loans/apply</li>
+  <li>GET /api/loans/my</li>
+  <li>GET /api/loans/{loanId}</li>
+  <li>GET /api/loans/{loanId}/repayments</li>
+</ul>
+
+<h3>Admin</h3>
+<ul>
+  <li>GET /api/admin/loans</li>
+  <li>PUT /api/admin/loans/{id}/approve</li>
+  <li>PUT /api/admin/loans/{id}/reject</li>
+  <li>PUT /api/admin/repayments/{repaymentId}/pay</li>
+  <li>GET /api/admin/customers</li>
+</ul>
+
+<hr/>
+
+<h2>🧮 EMI & Schedule</h2>
+<ul>
+  <li>EMI calculated using <code>EmiCalculator.calculateEMI()</code></li>
+  <li>Schedules generated with <code>DateUtil.generateDueDates()</code></li>
+  <li>Admins mark installments as PAID</li>
+  <li>Customers see live totals and remaining balance</li>
+</ul>
+
+<hr/>
+
+<h2>🧪 Troubleshooting</h2>
+<ul>
+  <li>CORS issues → check Vite URL</li>
+  <li>401/403 → verify JWT & expiration</li>
+  <li>Ports → Backend 8080, Frontend 5173</li>
+  <li>Check browser Network tab for failed requests</li>
+</ul>
+
+<hr/>
+
+<h2>🗺️ Roadmap</h2>
+<ul>
+  <li>Payment gateway integration</li>
+  <li>CSV / PDF exports</li>
+  <li>Admin analytics & charts</li>
+  <li>Multi-tenancy & audit logs</li>
+  <li>Email / SMS notifications</li>
+</ul>
+
+<hr/>
+
+<h2>🤝 Contributing</h2>
+<ul>
+  <li>Focused PRs</li>
+  <li>Clear commit messages</li>
+  <li>Screenshots or GIFs for UI changes</li>
+</ul>
+
+<hr/>
+
+<h2>📄 License</h2>
+<p>MIT — free to use with attribution.</p>
+
+<hr/>
+
+<h2>💬 Credits</h2>
+<p>
+  Built with ❤️ using Spring Boot & React.<br/>
+  Thanks to the open-source community.
+</p>
+
+<hr/>
+
+<h2>⚡ Quick Start (TL;DR)</h2>
+<pre>
 # Backend
 cd backend
 mvn spring-boot:run
 
 # Frontend
 cd frontend
-cp .env.example .env   # put VITE_API_BASE_URL=http://localhost:8080
-npm i
+npm install
 npm run dev
+</pre>
 
-
-Open http://localhost:5173
- and you’re in. Happy shipping! 🚀
+<p>
+  Open <code>http://localhost:5173</code> and you’re in.<br/>
+  <strong>Happy shipping! 🚀</strong>
+</p>
